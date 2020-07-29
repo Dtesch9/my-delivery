@@ -1,10 +1,13 @@
 import React from 'react';
 
+import GlobalStyles from './styles/global';
+
 const App: React.FC = () => {
   return (
-    <div>
+    <>
       <h1>Unicard</h1>
-    </div>
+      <GlobalStyles />
+    </>
   );
 };
 

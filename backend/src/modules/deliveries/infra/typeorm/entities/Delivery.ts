@@ -6,6 +6,8 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
+type Coors = [number, number];
+
 @Entity('deliveries')
 class Delivery {
   @PrimaryGeneratedColumn('uuid')
@@ -18,10 +20,10 @@ class Delivery {
   delivery_date: Date;
 
   @Column('decimal', { array: true })
-  start_point: number[];
+  start_point: Coors;
 
   @Column('decimal', { array: true })
-  end_point: number[];
+  end_point: Coors;
 
   @CreateDateColumn()
   created_at: Date;

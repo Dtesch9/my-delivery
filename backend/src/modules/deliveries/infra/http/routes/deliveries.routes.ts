@@ -6,5 +6,6 @@ const DeliveriesRouter = Router();
 const deliveriesController = new DeliveriesController();
 
 DeliveriesRouter.get('/', deliveriesController.index);
+DeliveriesRouter.post('/', deliveriesController.store);
 
 export default DeliveriesRouter;

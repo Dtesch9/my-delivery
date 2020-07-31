@@ -12,6 +12,17 @@ const translateY = keyframes`
   }
 `;
 
+const rotate = keyframes`
+ from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+    
+  }
+`;
+
 export const Container = styled.div`
   padding: 32px 0 32px;
   height: 100vh;
@@ -83,7 +94,7 @@ export const DeliveryList = styled.li`
   button {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 100%;
     width: 100%;
   }
@@ -97,14 +108,60 @@ export const DeliveryList = styled.li`
   }
 
   strong {
+    margin-left: 19.5%;
     font-size: 16px;
     line-height: 16px;
     color: #f5f5f5;
     font-weight: 400;
+
+    @media (max-width: 1500px) {
+      margin-left: 18%;
+    }
+
+    @media (max-width: 1300px) {
+      margin-left: 16%;
+    }
+
+    @media (max-width: 1050px) {
+      margin-left: 14%;
+    }
+
+    @media (max-width: 885px) {
+      margin-left: 12%;
+    }
   }
 
   span {
+    margin-right: 20%;
     font-size: 14px;
     color: #e0e0e0;
+
+    @media (max-width: 1500px) {
+      margin-right: 18%;
+    }
+
+    @media (max-width: 1300px) {
+      margin-right: 16%;
+    }
+
+    @media (max-width: 1050px) {
+      margin-right: 14%;
+    }
+
+    @media (max-width: 885px) {
+      margin-right: 12%;
+    }
+  }
+`;
+
+export const Loading = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    animation: ${rotate} 2s linear infinite;
   }
 `;

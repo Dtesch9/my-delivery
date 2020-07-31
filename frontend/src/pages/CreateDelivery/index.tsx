@@ -5,6 +5,9 @@ import { toast } from 'react-toastify';
 import { isAfter } from 'date-fns';
 import * as Yup from 'yup';
 import { FiUser, FiCalendar, FiMapPin, FiSave } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
+
+import api from '../../services/api';
 
 import Input from '../../components/Input';
 import Map from '../../components/Map';
@@ -21,12 +24,13 @@ import {
 
 interface FormData {
   client_name: string;
-  delivery_deadline: Date;
+  delivery_date: string;
   origin: string;
   destination: string;
 }
 
 const CreateDelivery: React.FC = () => {
+  const { push } = useHistory();
   const formRef = useRef<FormHandles>(null);
   const [origin, setOrigin] = useState<[number, number]>([0, 0]);
   const [destination, setDestination] = useState<[number, number]>([0, 0]);
@@ -48,22 +52,30 @@ const CreateDelivery: React.FC = () => {
       formRef.current?.reset();
 
       try {
-        const { client_name, delivery_deadline } = formData;
+        const { client_name, delivery_date } = formData;
 
-        const date_deadline = new Date(delivery_deadline);
+        const filteredDate = delivery_date.split('-');
+
+        const yearMonthDay = filteredDate.map(date => Number(date));
+
+        const date_deadline = new Date(
+          yearMonthDay[0],
+          yearMonthDay[1] - 1,
+          yearMonthDay[2],
+        );
 
         const data = {
           client_name,
-          delivery_deadline: date_deadline,
-          origin,
-          destination,
+          delivery_date: date_deadline,
+          start_point: origin,
+          end_point: destination,
         };
 
         const schema = Yup.object().shape({
           client_name: Yup.string().required(),
-          delivery_deadline: Yup.date().required(),
-          origin: Yup.array().required(),
-          destination: Yup.array().required(),
+          delivery_date: Yup.date().required(),
+          start_point: Yup.array().required(),
+          end_point: Yup.array().required(),
         });
 
         await schema.validate(data, { abortEarly: false });
@@ -82,7 +94,9 @@ const CreateDelivery: React.FC = () => {
           return;
         }
 
-        // history push
+        await api.post('/deliveries', data);
+
+        push('/deliveries');
 
         toast('Cadastro realizada com sucesso', {
           type: 'success',
@@ -106,7 +120,7 @@ const CreateDelivery: React.FC = () => {
         });
       }
     },
-    [origin, destination],
+    [origin, destination, push],
   );
 
   const handleOrigin = useCallback((position: [number, number]) => {
@@ -128,7 +142,7 @@ const CreateDelivery: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input Icon={FiUser} name="client_name" placeholder="Cliente" />
 
-            <Input Icon={FiCalendar} name="delivery_deadline" type="date" />
+            <Input Icon={FiCalendar} name="delivery_date" type="date" />
 
             <Input
               Icon={FiMapPin}

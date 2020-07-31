@@ -38,7 +38,7 @@ export const Container = styled.div<ContainerProps>`
     color: #8991be;
 
     &::placeholder {
-      color: #666;
+      color: #8991a9;
       font-size: calc(min(4.5vw, 20px));
     }
 

@@ -1,11 +1,11 @@
 import React, { useCallback, useRef, useState, useMemo } from 'react';
 import { Form } from '@unform/web';
-import { FiUser, FiCalendar, FiX } from 'react-icons/fi';
+import { FiUser, FiCalendar, FiMapPin } from 'react-icons/fi';
 
 import Input from '../../components/Input';
 import Map from '../../components/Map';
 
-import { Container, Wrapper, Card, MapArea } from './styles';
+import { Container, Wrapper, Card, MapArea, MapContainer } from './styles';
 
 const CreateDelivery: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -13,11 +13,15 @@ const CreateDelivery: React.FC = () => {
   const [destination, setDestination] = useState<[number, number]>([0, 0]);
 
   const originParsed = useMemo(() => {
-    return `Lat:${origin[0]}, Lng:${origin[1]}`;
+    return `Lat:${origin[0].toPrecision(15)},  Lng:${origin[1].toPrecision(
+      15,
+    )}`;
   }, [origin]);
 
   const destinationParsed = useMemo(() => {
-    return `Lat:${destination[0]}, Lng:${destination[1]}`;
+    return `Lat:${destination[0].toPrecision(
+      15,
+    )},  Lng:${destination[1].toPrecision(15)}`;
   }, [destination]);
 
   const handleSubmit = useCallback(() => {}, []);
@@ -48,7 +52,7 @@ const CreateDelivery: React.FC = () => {
 
             <Input
               ref={inputRef}
-              Icon={FiX}
+              Icon={FiMapPin}
               name="origin"
               value={origin[0] ? originParsed : undefined}
               placeholder="Origem"
@@ -56,7 +60,7 @@ const CreateDelivery: React.FC = () => {
 
             <Input
               ref={inputRef}
-              Icon={FiX}
+              Icon={FiMapPin}
               name="destination"
               value={destination[0] ? destinationParsed : undefined}
               placeholder="Destination"
@@ -64,8 +68,15 @@ const CreateDelivery: React.FC = () => {
           </Form>
 
           <MapArea>
-            <Map getPosition={handleOrigin} />
-            <Map getPosition={handleDestination} />
+            <MapContainer>
+              <h2>Origem</h2>
+              <Map getPosition={handleOrigin} />
+            </MapContainer>
+
+            <MapContainer>
+              <h2>Destino</h2>
+              <Map getPosition={handleDestination} />
+            </MapContainer>
           </MapArea>
         </Card>
       </Wrapper>

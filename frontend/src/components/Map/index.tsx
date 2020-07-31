@@ -18,7 +18,9 @@ const MapLeaflet: React.FC<MapLeafletProps> = ({ getPosition }) => {
     0,
   ]);
 
-  getPosition(selectedPosition);
+  useEffect(() => {
+    getPosition(selectedPosition);
+  }, [getPosition, selectedPosition]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(position => {
@@ -34,7 +36,7 @@ const MapLeaflet: React.FC<MapLeafletProps> = ({ getPosition }) => {
 
   return (
     <Map
-      style={{ height: '25vh', width: '25vw', margin: '0 12px 0' }}
+      style={{ height: '25vh', width: '32vw', margin: '0 8px 0' }}
       center={initialPosition}
       zoom={14}
       onClick={handleMapClick}

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { format, parseISO } from 'date-fns';
 import { toast } from 'react-toastify';
 import { FaSpinner } from 'react-icons/fa';
+import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -29,6 +30,7 @@ interface Delivery {
 type AxiosCallResponse = Delivery;
 
 const Deliveries: React.FC = () => {
+  const { push } = useHistory();
   const [deliveries, setDeliveries] = useState<Delivery[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -74,6 +76,19 @@ const Deliveries: React.FC = () => {
     loadData();
   }, []);
 
+  const handleClick = useCallback(
+    (start_point: [number, number], end_point: [number, number]) => {
+      push({
+        pathname: '/delivery_path',
+        state: {
+          start_point,
+          end_point,
+        },
+      });
+    },
+    [push],
+  );
+
   return (
     <Container>
       <Wrapper>
@@ -98,7 +113,12 @@ const Deliveries: React.FC = () => {
                 >
                   {deliveries.map(delivery => (
                     <DeliveryList key={delivery.id}>
-                      <button type="button">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          handleClick(delivery.start_point, delivery.end_point);
+                        }}
+                      >
                         <strong>{delivery.client_name}</strong>
                         <span>{delivery.delivery_date}</span>
                       </button>

@@ -2,12 +2,13 @@ import React, { useCallback, useRef, useState, useMemo } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { toast } from 'react-toastify';
-import { isAfter, format } from 'date-fns';
+import { isAfter } from 'date-fns';
 import * as Yup from 'yup';
 import { FiUser, FiCalendar, FiMapPin, FiSave } from 'react-icons/fi';
 
 import Input from '../../components/Input';
 import Map from '../../components/Map';
+import Header from '../../components/Header';
 
 import {
   Container,
@@ -50,19 +51,6 @@ const CreateDelivery: React.FC = () => {
         const { client_name, delivery_deadline } = formData;
 
         const date_deadline = new Date(delivery_deadline);
-        const currentDay = new Date(Date.now());
-
-        const futureDeliveryDate = isAfter(date_deadline, currentDay);
-
-        if (!futureDeliveryDate) {
-          toast('A entrega precisa ser em uma data futura!', {
-            type: 'warning',
-            pauseOnHover: true,
-            progressStyle: { backgroundColor: '#a9ff1f' },
-          });
-
-          return;
-        }
 
         const data = {
           client_name,
@@ -79,6 +67,20 @@ const CreateDelivery: React.FC = () => {
         });
 
         await schema.validate(data, { abortEarly: false });
+
+        const currentDay = new Date(Date.now());
+
+        const futureDeliveryDate = isAfter(date_deadline, currentDay);
+
+        if (!futureDeliveryDate) {
+          toast('A entrega precisa ser em uma data futura!', {
+            type: 'warning',
+            pauseOnHover: true,
+            progressStyle: { backgroundColor: '#a9ff1f' },
+          });
+
+          return;
+        }
 
         // history push
 
@@ -118,18 +120,15 @@ const CreateDelivery: React.FC = () => {
   return (
     <Container>
       <Wrapper>
+        <Header />
+
         <Card>
           <h1>Cadastre uma entrega</h1>
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input Icon={FiUser} name="client_name" placeholder="Cliente" />
 
-            <Input
-              Icon={FiCalendar}
-              name="delivery_deadline"
-              type="date"
-              placeholder="Data de entrega"
-            />
+            <Input Icon={FiCalendar} name="delivery_deadline" type="date" />
 
             <Input
               Icon={FiMapPin}

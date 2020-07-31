@@ -29,6 +29,7 @@ export const Wrapper = styled.div`
   height: 100%;
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
@@ -78,7 +79,7 @@ export const SubmitButton = styled.button.attrs({
   transition: all 200ms;
 
   &:active {
-    color: #0d0f;
+    color: #33ff33;
 
     > svg {
       color: #c3deea !important;
@@ -86,7 +87,7 @@ export const SubmitButton = styled.button.attrs({
   }
 
   &:hover svg {
-    color: #0d0f;
+    color: #33ff33;
   }
 
   > svg {

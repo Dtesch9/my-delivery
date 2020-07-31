@@ -1,15 +1,16 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 import GlobalStyles from './styles/global';
 
-import CreateDelivery from './pages/CreateDelivery';
+import Routes from './routes';
 
 const App: React.FC = () => {
   return (
     <>
-      <CreateDelivery />
+      <Routes />
       <GlobalStyles />
       <ToastContainer autoClose={3000} />
     </>

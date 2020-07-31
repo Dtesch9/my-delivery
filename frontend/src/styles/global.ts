@@ -23,7 +23,7 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font-family: 'Roboto' sans-serif;
+    font-family: 'Roboto Slab', serif;
     font-size: 16px;
   }
 

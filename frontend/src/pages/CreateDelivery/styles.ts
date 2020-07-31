@@ -49,9 +49,9 @@ export const Card = styled.div`
   animation: ${translateY} 1.5s;
 
   h1 {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     color: #c3deea;
-    font-size: calc(min(4vw, 32px));
+    font-size: calc(min(4vw, 28px));
   }
 
   form {
@@ -108,7 +108,7 @@ export const MapContainer = styled.div<MapContainerProps>`
   h2 {
     margin-bottom: 12px;
     color: #c3deea;
-    font-size: calc(min(4vw, 24px));
+    font-size: calc(min(4vw, 18px));
     letter-spacing: 1px;
 
     ${({ filled }) =>

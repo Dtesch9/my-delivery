@@ -16,9 +16,11 @@ const Input: React.FC<InputProps> = ({ name, Icon, ...rest }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
-  console.log(name);
-
   const { fieldName, defaultValue, registerField } = useField(name);
+
+  useEffect(() => {
+    setIsFilled(!!rest.value);
+  }, [rest.value]);
 
   useEffect(() => {
     registerField({

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  padding: 32px 0 32px;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -21,7 +22,8 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 32px;
-  width: 75vh;
+  min-height: 500px;
+  width: 70vw;
   height: 75vh;
   background: #2a304d;
   border-radius: 20px;
@@ -30,5 +32,21 @@ export const Card = styled.div`
   h1 {
     margin-bottom: 24px;
     color: #8991be;
+    font-size: calc(min(4vw, 32px));
   }
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+`;
+
+export const MapArea = styled.div`
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

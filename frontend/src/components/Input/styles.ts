@@ -10,7 +10,7 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
   max-width: calc(min(424px, 100%));
-  width: 45vh;
+  width: 50vw;
   height: 4.5vh;
   border-radius: 8px;
   transition: all 500ms;

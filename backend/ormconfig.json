@@ -3,9 +3,9 @@
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
-  "username": "dtesch",
-  "password": 123456,
-  "database": "unicard_deliveries",
+  "username": "postgres_user",
+  "password": "your_postgres_password",
+  "database": "DATABASE_NAME",
   "entities": [
     "./src/modules/**/infra/typeorm/entities/*.ts"
   ],

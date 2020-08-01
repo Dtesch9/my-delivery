@@ -1,43 +1,53 @@
-import React, { ReactNode } from 'react';
-import { render } from '@testing-library/react';
-import MockAdapter from 'axios-mock-adapter';
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
 
-import api from '../../services/api';
+import Map from '../../components/Map';
 
-import RoutePath from '../../pages/RoutePath';
+interface MapContainer extends Element {
+  click(): void;
+}
+
+const mockGetPositionCallback = jest.fn();
 
 Object.defineProperty(window.navigator, 'geolocation', {
   value: {
-    getCurrentPosition: jest.fn(),
+    getCurrentPosition: jest.fn(position =>
+      position({
+        coords: {
+          latitude: 2020,
+          longitude: 1010,
+        },
+      }),
+    ),
   },
 });
 
-const mockApi = new MockAdapter(api);
-
-jest.mock('react-router-dom', () => ({
-  useLocation: () => ({
-    state: {
-      start_point: [2323, 2323],
-      end_point: [3232, 3232],
-    },
-  }),
-  NavLink: ({ children }: { children: ReactNode }) => children,
-}));
-
-describe('RoutePath', () => {
+describe('Map', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-
-    mockApi.reset();
-
-    jest.spyOn(Date, 'now').mockImplementation(() => {
-      return new Date(2020, 7, 1).getTime();
-    });
   });
 
-  it('should render RoutePath page', async () => {
-    const { getByText } = render(<RoutePath />);
+  it('should render Map component', async () => {
+    const { container } = render(<Map getPosition={() => {}} />);
 
-    expect(getByText('Percurso de entrega')).toBeTruthy();
+    const mapContainer = container.querySelector(
+      '.leaflet-container',
+    ) as MapContainer;
+
+    expect(mapContainer).toBeTruthy();
+  });
+
+  it('should be able to click on the map', async () => {
+    const { container } = render(<Map getPosition={mockGetPositionCallback} />);
+
+    const mapContainer = container.querySelector(
+      '.leaflet-container',
+    ) as MapContainer;
+
+    fireEvent.click(mapContainer);
+
+    expect(mockGetPositionCallback).toHaveBeenCalledWith(
+      expect.arrayContaining([expect.anything()]),
+    );
   });
 });

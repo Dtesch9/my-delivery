@@ -28,7 +28,7 @@ describe('Map', () => {
   });
 
   it('should render Map component', async () => {
-    const { container } = render(<Map getPosition={() => {}} />);
+    const { container } = render(<Map getPosition={mockGetPositionCallback} />);
 
     const mapContainer = container.querySelector(
       '.leaflet-container',

@@ -26,7 +26,7 @@ export const Container = styled.div<ContainerProps>`
     font-size: 3vh;
     transition: all 500ms;
     color: ${({ isFocused, isFilled }) =>
-      isFocused || isFilled ? '#0d0f' : '#8991BE'};
+      isFocused || isFilled ? '#0AFF0A' : '#8991BE'};
   }
 
   input {

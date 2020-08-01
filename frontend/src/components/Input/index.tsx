@@ -46,7 +46,7 @@ const Input: React.FC<InputProps> = ({ name, Icon, ...rest }) => {
       isFocused={Number(isFocused)}
       isFilled={Number(isFilled)}
     >
-      {Icon && <Icon size={20} />}
+      {Icon && <Icon data-testid="input-icon" size={20} />}
 
       <input
         ref={inputElementRef}

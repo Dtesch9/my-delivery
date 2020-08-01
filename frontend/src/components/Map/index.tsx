@@ -1,14 +1,14 @@
 import React, { useState, useCallback, useEffect, memo } from 'react';
-import { Map, TileLayer, Marker } from 'react-leaflet';
+import { Map, TileLayer, Marker, MapProps } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
 
 type GeoLocation = [number, number];
 
-interface MapLeafletProps {
+interface MapLeafletProps extends Partial<MapProps> {
   getPosition(callback: GeoLocation): void;
 }
 
-const MapLeaflet: React.FC<MapLeafletProps> = ({ getPosition }) => {
+const MapLeaflet: React.FC<MapLeafletProps> = ({ getPosition, ...rest }) => {
   const [initialPosition, setInitialPosition] = useState<[number, number]>([
     0,
     0,
@@ -36,6 +36,7 @@ const MapLeaflet: React.FC<MapLeafletProps> = ({ getPosition }) => {
 
   return (
     <Map
+      {...rest}
       style={{ height: '25vh', width: '32vw', margin: '0 8px 0' }}
       center={initialPosition}
       zoom={14}

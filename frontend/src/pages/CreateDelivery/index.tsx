@@ -142,7 +142,12 @@ const CreateDelivery: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input Icon={FiUser} name="client_name" placeholder="Cliente" />
 
-            <Input Icon={FiCalendar} name="delivery_date" type="date" />
+            <Input
+              data-testid="delivery_date"
+              Icon={FiCalendar}
+              name="delivery_date"
+              type="date"
+            />
 
             <Input
               Icon={FiMapPin}
@@ -157,7 +162,7 @@ const CreateDelivery: React.FC = () => {
               disabled
               name="destination"
               value={destination[0] ? destinationParsed : undefined}
-              placeholder="Destination"
+              placeholder="Destino"
             />
 
             <SubmitButton>

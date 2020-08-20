@@ -21,12 +21,25 @@ export const Wrapper = styled.div`
 `;
 
 export const Card = styled(CardComponent)`
-  height: 700px;
+  height: 750px;
 
   h1 {
     margin-bottom: 16px;
     color: #c3deea;
     font-size: calc(min(4vw, 28px));
+  }
+
+  .leaflet-container {
+    margin-bottom: 48px;
+  }
+
+  @media (max-width: 1125px) {
+    width: 100%;
+    height: 600px;
+
+    .leaflet-right {
+      display: none;
+    }
   }
 
   td {

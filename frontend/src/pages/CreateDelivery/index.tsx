@@ -122,28 +122,36 @@ const CreateDelivery: React.FC = () => {
   );
 
   const getGeocode = useCallback(async (address: string) => {
-    Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_API_KEY}`);
+    try {
+      Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_API_KEY}`);
 
-    const response: GeoCodingResponse = await Geocode.fromAddress(
-      address,
-      undefined,
-      'pt',
-      'BR',
-    );
+      const response: GeoCodingResponse = await Geocode.fromAddress(
+        address,
+        undefined,
+        'pt',
+        'BR',
+      );
 
-    return response.results[0];
+      return response.results[0];
+    } catch (error) {
+      throw new Error('Research invalid');
+    }
   }, []);
 
   const handleSearchOrigemGeocode = useCallback(
     async (data: { origin: string }) => {
-      const response = await getGeocode(data.origin);
+      try {
+        const response = await getGeocode(data.origin);
 
-      const { formatted_address, geometry } = response;
+        const { formatted_address, geometry } = response;
 
-      const { location } = geometry;
+        const { location } = geometry;
 
-      setOriginAddress(formatted_address);
-      setOrigin([location.lat, location.lng]);
+        setOriginAddress(formatted_address);
+        setOrigin([location.lat, location.lng]);
+      } catch (error) {
+        toast('Pesquisa inválida', { type: 'warning' });
+      }
     },
     [getGeocode],
   );

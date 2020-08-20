@@ -36,6 +36,10 @@
 3. Utilizando docker **Recomendado** crie uma imagem do banco postgres com o comando `docker run --name database_unicad -e POSTGRES_PASSWORD=123456 -e POSTGRES_USER=unicad -p 5432:5432 -d postgres`. e para subir o container utilize o comando `docker start database_unicad`
 4. Caso já tenha um banco postgres rodando em sua máquina não precisa utilizar o docker.
 5. Na mesma pasta vá até o arquivo `ormconfig.json`e coloque as credenciais do seu banco de dados postgres
+
+## ormconfig.json
+
+![ormconfig](https://github.com/Dtesch9/unicad_deliveries/blob/master/assets/ormconfig.png)
 6 Rode o comando `$ yarn` ou `$ npm install` para instalar as dependências.
 
 
@@ -63,7 +67,7 @@ visualização da cobertura dos tests. (Hint: se você entrar na pasta `coverage
 
 ## Usage Example
 
-![Usage](https://github.com/Dtesch9/loldesign-show-me-the-code/blob/master/assets/fale-mais-web.gif)
+![Usage](https://github.com/Dtesch9/unicad_deliveries/blob/master/assets/delivery-challenge-aplication.gif)
 
 
 :link: [Linkedin](https://www.linkedin.com/in/douglas-tesch-00b7a518b/)

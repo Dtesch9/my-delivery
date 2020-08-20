@@ -1,11 +1,18 @@
-import React, { useCallback, useRef, useState, useMemo } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { toast } from 'react-toastify';
 import { isAfter } from 'date-fns';
 import * as Yup from 'yup';
-import { FiUser, FiCalendar, FiMapPin, FiSave } from 'react-icons/fi';
+import {
+  FiUser,
+  FiCalendar,
+  FiMapPin,
+  FiCodesandbox,
+  FiSearch,
+} from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
+import Geocode, { GeoCodingResponse } from 'react-geocode';
 
 import api from '../../services/api';
 
@@ -32,20 +39,11 @@ interface FormData {
 const CreateDelivery: React.FC = () => {
   const { push } = useHistory();
   const formRef = useRef<FormHandles>(null);
+
   const [origin, setOrigin] = useState<[number, number]>([0, 0]);
   const [destination, setDestination] = useState<[number, number]>([0, 0]);
-
-  const originParsed = useMemo(() => {
-    return `Lat:${origin[0].toPrecision(15)},  Lng:${origin[1].toPrecision(
-      15,
-    )}`;
-  }, [origin]);
-
-  const destinationParsed = useMemo(() => {
-    return `Lat:${destination[0].toPrecision(
-      15,
-    )},  Lng:${destination[1].toPrecision(15)}`;
-  }, [destination]);
+  const [originAddress, setOriginAddress] = useState('');
+  const [destinationAddress, setDestinationAddress] = useState('');
 
   const handleSubmit = useCallback(
     async (formData: FormData) => {
@@ -123,6 +121,47 @@ const CreateDelivery: React.FC = () => {
     [origin, destination, push],
   );
 
+  const getGeocode = useCallback(async (address: string) => {
+    Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_API_KEY}`);
+
+    const response: GeoCodingResponse = await Geocode.fromAddress(
+      address,
+      undefined,
+      'pt',
+      'BR',
+    );
+
+    return response.results[0];
+  }, []);
+
+  const handleSearchOrigemGeocode = useCallback(
+    async (data: { origin: string }) => {
+      const response = await getGeocode(data.origin);
+
+      const { formatted_address, geometry } = response;
+
+      const { location } = geometry;
+
+      setOriginAddress(formatted_address);
+      setOrigin([location.lat, location.lng]);
+    },
+    [getGeocode],
+  );
+
+  const handleSearchDestinationGeocode = useCallback(
+    async (data: { destination: string }) => {
+      const response = await getGeocode(data.destination);
+
+      const { formatted_address, geometry } = response;
+
+      const { location } = geometry;
+
+      setDestinationAddress(formatted_address);
+      setDestination([location.lat, location.lng]);
+    },
+    [getGeocode],
+  );
+
   const handleOrigin = useCallback((position: [number, number]) => {
     setOrigin(position);
   }, []);
@@ -148,38 +187,70 @@ const CreateDelivery: React.FC = () => {
               name="delivery_date"
               type="date"
             />
-
-            <Input
-              Icon={FiMapPin}
-              disabled
-              name="origin"
-              value={origin[0] ? originParsed : undefined}
-              placeholder="Origem"
-            />
-
-            <Input
-              Icon={FiMapPin}
-              disabled
-              name="destination"
-              value={destination[0] ? destinationParsed : undefined}
-              placeholder="Destino"
-            />
-
-            <SubmitButton>
-              Cadastrar
-              <FiSave />
-            </SubmitButton>
           </Form>
+
+          <Form onSubmit={handleSearchOrigemGeocode} className="origin-form">
+            <h3>{originAddress || 'Busque por endereço ou CEP'}</h3>
+
+            <div aria-label="Search location input container">
+              <Input
+                containerStyle={{ marginTop: 0, borderRadius: '0' }}
+                Icon={FiMapPin}
+                name="origin"
+                placeholder="Origem"
+                value={originAddress || undefined}
+                isFocusedNow={() => setOriginAddress('')}
+              />
+
+              <button type="submit">
+                <FiSearch />
+              </button>
+            </div>
+          </Form>
+
+          <Form
+            initialData={{ destination: destinationAddress }}
+            onSubmit={handleSearchDestinationGeocode}
+            className="destination-form"
+          >
+            <h3>{destinationAddress || 'Busque por endereço ou CEP'}</h3>
+
+            <div aria-label="Search location input container">
+              <Input
+                containerStyle={{ marginTop: 0, borderRadius: '0' }}
+                Icon={FiMapPin}
+                name="destination"
+                placeholder="Destino"
+                value={destinationAddress || undefined}
+                isFocusedNow={() => setDestinationAddress('')}
+              />
+
+              <button type="submit">
+                <FiSearch />
+              </button>
+            </div>
+          </Form>
+
+          <SubmitButton onClick={() => formRef.current?.submitForm()}>
+            Cadastrar
+            <FiCodesandbox />
+          </SubmitButton>
 
           <MapArea>
             <MapContainer filled={Number(origin[0])}>
               <h2>Origem</h2>
-              <Map getPosition={handleOrigin} />
+              <Map
+                getPosition={handleOrigin}
+                hasNewPosition={origin || undefined}
+              />
             </MapContainer>
 
             <MapContainer filled={Number(destination[0])}>
               <h2>Destino</h2>
-              <Map getPosition={handleDestination} />
+              <Map
+                getPosition={handleDestination}
+                hasNewPosition={destination || undefined}
+              />
             </MapContainer>
           </MapArea>
         </Card>

@@ -7,11 +7,15 @@ import { Container } from './styles';
 interface Props {
   name: string;
   Icon?: React.ComponentType<IconBaseProps>;
+  containerStyle?: Record<string, unknown>;
+  isFocusedNow?(): void;
 }
 
 type InputProps = JSX.IntrinsicElements['input'] & Props;
 
-const Input: React.FC<InputProps> = ({ name, Icon, ...rest }) => {
+const Input: React.FC<InputProps> = props => {
+  const { name, Icon, isFocusedNow, containerStyle = {}, ...rest } = props;
+
   const inputElementRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -34,7 +38,11 @@ const Input: React.FC<InputProps> = ({ name, Icon, ...rest }) => {
   const handleInputFocus = useCallback(() => {
     setIsFilled(false);
     setIsFocused(true);
-  }, []);
+
+    if (isFocusedNow) {
+      isFocusedNow();
+    }
+  }, [isFocusedNow]);
 
   const handleInputBlur = useCallback(() => {
     setIsFilled(!!inputElementRef.current?.value);
@@ -44,6 +52,7 @@ const Input: React.FC<InputProps> = ({ name, Icon, ...rest }) => {
   return (
     <Container
       data-testid="input-container"
+      style={containerStyle}
       isFocused={Number(isFocused)}
       isFilled={Number(isFilled)}
     >

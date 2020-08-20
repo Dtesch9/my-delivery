@@ -21,6 +21,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Card = styled(CardComponent)`
+  height: 700px;
+
   h1 {
     margin-bottom: 16px;
     color: #c3deea;

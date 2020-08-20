@@ -1694,6 +1694,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-geocode@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@types/react-geocode/-/react-geocode-0.2.0.tgz#1044bf733382e9d5c9e3c4e84cbbf82c20987e2c"
+  integrity sha512-xypTvo8wQa2z2TJrYLiZYjyZvXbFNrf10a3U45Yzxq9+AARyr7ZZbMzUYejzPTBglI7/zNYnDEW6EdU0el/Hgg==
+
 "@types/react-leaflet@^2.5.2":
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/@types/react-leaflet/-/react-leaflet-2.5.2.tgz#f38538520f477b84d51b36c1f115b7617cdbf695"
@@ -9357,6 +9362,13 @@ react-error-overlay@^6.0.7:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
   integrity sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
+
+react-geocode@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.2.1.tgz#c9f58d979097272831a01ef0ebd89add8e15725a"
+  integrity sha512-kipHpIA1w0XbQ2x6BOpLsup9kui6yjjAaXigCtom85xiKDB2KqDlxYx7dzd68Hxd5KG27nSFiWNRLosjKVg6VQ==
+  dependencies:
+    regenerator-runtime "^0.13.3"
 
 react-icons@^3.10.0:
   version "3.10.0"

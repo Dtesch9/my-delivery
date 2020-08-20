@@ -7,7 +7,7 @@ interface MapContainerProps {
 }
 
 export const Container = styled.div`
-  padding: 32px 0 32px;
+  padding: 32px 8px 32px;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -36,7 +36,63 @@ export const Card = styled(CardComponent)`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    max-width: 424px;
     width: 100%;
+  }
+
+  .origin-form,
+  .destination-form {
+    margin-top: 12px;
+    width: 100%;
+
+    > h3 {
+      background-color: rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      min-height: 38px;
+      font-size: 14px;
+      padding: 8px;
+    }
+
+    > div {
+      background: #414976;
+      margin-top: 12px;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      align-items: center;
+      background: #2a304d;
+      border-radius: 8px;
+      border: none;
+      color: #8991be;
+      border-radius: 8px;
+      transition: all 400ms;
+      border: 1px inset #414976;
+
+      input {
+        border: 0;
+        border-radius: 0;
+      }
+
+      button {
+        height: 100%;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f4f4fe;
+        transition: all 400ms;
+
+        &:hover {
+          color: #33ff33;
+        }
+      }
+    }
   }
 `;
 
@@ -52,7 +108,7 @@ export const SubmitButton = styled.button.attrs({
   border-radius: 6px;
   border: 1px outset #414976;
   width: 200px;
-  height: 50px;
+  height: 100px;
   transition: all 200ms;
 
   &:active {
@@ -77,6 +133,7 @@ export const MapArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
 `;
 
 export const MapContainer = styled.div<MapContainerProps>`

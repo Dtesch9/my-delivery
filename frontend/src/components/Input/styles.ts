@@ -9,9 +9,9 @@ export const Container = styled.div<ContainerProps>`
   margin-top: 12px;
   display: flex;
   align-items: center;
-  max-width: calc(min(424px, 100%));
-  width: 50vw;
-  height: 4.5vh;
+  max-width: 424px;
+  width: 100%;
+  height: 40px;
   border-radius: 8px;
   transition: all 500ms;
   border: 1px inset #414976;

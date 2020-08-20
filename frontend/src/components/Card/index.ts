@@ -16,10 +16,8 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 0 16px;
-  min-height: 500px;
+  padding: 32px 8px 16px;
   width: 70vw;
-  height: calc(max(75vh, 600px));
   background: #2a304d;
   border-radius: 20px;
   box-shadow: 2px 16px 24px 6px #495071;

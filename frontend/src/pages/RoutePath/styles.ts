@@ -26,4 +26,8 @@ export const Card = styled(CardComponent)`
     color: #c3deea;
     font-size: calc(min(4vw, 28px));
   }
+
+  td {
+    color: black;
+  }
 `;

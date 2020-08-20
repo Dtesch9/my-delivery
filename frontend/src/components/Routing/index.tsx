@@ -16,7 +16,9 @@ class Routing extends MapLayer<RoutingProps> {
     const leafletElement = L.Routing.control({
       waypoints: [L.latLng(start_point), L.latLng(end_point)],
     }).addTo(map.leafletElement);
+
     return leafletElement.getPlan();
   }
 }
+
 export default withLeaflet(Routing);

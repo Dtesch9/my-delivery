@@ -13,6 +13,7 @@ type InputProps = JSX.IntrinsicElements['input'] & Props;
 
 const Input: React.FC<InputProps> = ({ name, Icon, ...rest }) => {
   const inputElementRef = useRef<HTMLInputElement>(null);
+
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 

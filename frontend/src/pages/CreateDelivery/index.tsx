@@ -238,17 +238,14 @@ const CreateDelivery: React.FC = () => {
           <MapArea>
             <MapContainer filled={Number(origin[0])}>
               <h2>Origem</h2>
-              <Map
-                getPosition={handleOrigin}
-                hasNewPosition={origin || undefined}
-              />
+              <Map getPosition={handleOrigin} hasNewPosition={origin} />
             </MapContainer>
 
             <MapContainer filled={Number(destination[0])}>
               <h2>Destino</h2>
               <Map
                 getPosition={handleDestination}
-                hasNewPosition={destination || undefined}
+                hasNewPosition={destination}
               />
             </MapContainer>
           </MapArea>

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { Card as CardComponent } from '../../components/Card';
 
+import { colors } from '../../styles/colors';
+
 export const Container = styled.div`
   padding: 32px 0 32px;
   height: 100%;
@@ -25,7 +27,7 @@ export const Card = styled(CardComponent)`
 
   h1 {
     margin-bottom: 16px;
-    color: #c3deea;
+    color: ${colors.titleInPrimary};
     font-size: calc(min(4vw, 28px));
   }
 

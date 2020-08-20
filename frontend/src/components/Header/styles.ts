@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { colors } from '../../styles/colors';
+
 export const Container = styled.div`
   padding: 32px 128px 32px;
   display: flex;
@@ -7,10 +9,10 @@ export const Container = styled.div`
   justify-content: space-around;
   max-width: 1440px;
   width: 100%;
-  background: #232842;
+  background: ${colors.primaryDark};
   border-radius: 8px;
   margin-bottom: 12px;
-  border: 2px inset #33ffd6;
+  border: 2px inset ${colors.titleInHighlight};
 
   @media (max-width: 1125px) {
     width: 100%;
@@ -26,15 +28,14 @@ export const Container = styled.div`
   }
 
   a {
-    color: #c3deea;
+    color: ${colors.titleInPrimary};
     text-transform: uppercase;
     border: none;
     transition: all 400ms;
     font-size: 14px;
 
     &:hover {
-      color: #33ffd6;
-      opacity: 0.8;
+      color: ${colors.iconOnHover};
     }
   }
 `;

@@ -2,6 +2,8 @@ import styled, { keyframes } from 'styled-components';
 
 import { Card as CardComponent } from '../../components/Card';
 
+import { colors } from '../../styles/colors';
+
 const rotate = keyframes`
  from {
     transform: rotate(0deg);
@@ -34,7 +36,7 @@ export const Wrapper = styled.div`
 export const Card = styled(CardComponent)`
   > h1 {
     margin-bottom: 24px;
-    color: #c3deea;
+    color: ${colors.titleInPrimary};
     font-size: calc(min(4vw, 28px));
   }
 `;
@@ -63,8 +65,8 @@ export const DeliveryList = styled.li`
   align-items: center;
   justify-content: space-around;
   height: 56px;
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
+  border-top: 1px solid ${colors.textInPrimaryLight};
+  border-bottom: 1px solid ${colors.textInPrimaryLight};
   border-radius: 4px;
   transition: all 500ms;
 
@@ -88,7 +90,7 @@ export const DeliveryList = styled.li`
     margin-left: 19.5%;
     font-size: 16px;
     line-height: 16px;
-    color: #f5f5f5;
+    color: ${colors.textInPrimaryLight};
     font-weight: 400;
 
     @media (max-width: 1500px) {
@@ -111,7 +113,7 @@ export const DeliveryList = styled.li`
   span {
     margin-right: 20%;
     font-size: 14px;
-    color: #e0e0e0;
+    color: ${colors.textInPrimaryLight};
 
     @media (max-width: 1500px) {
       margin-right: 18%;

@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { colors } from '../../styles/colors';
+
 interface ContainerProps {
   isFocused: number;
   isFilled: number;
@@ -12,13 +14,13 @@ export const Container = styled.div<ContainerProps>`
   max-width: 424px;
   width: 100%;
   height: 40px;
-  border-radius: 8px;
+  border-radius: 2px;
   transition: all 500ms;
-  border: 1px inset #414976;
+  border: 2px solid ${colors.textInPrimaryDark};
   ${({ isFocused }) =>
     isFocused &&
     css`
-      box-shadow: 2px 1px 4px 1px #8991be;
+      box-shadow: 2px 1px 4px 1px ${colors.textInPrimary};
     `};
 
   svg {
@@ -26,19 +28,21 @@ export const Container = styled.div<ContainerProps>`
     font-size: 3vh;
     transition: all 500ms;
     color: ${({ isFocused, isFilled }) =>
-      isFocused || isFilled ? '#0AFF0A' : '#8991BE'};
+      isFocused || isFilled
+        ? `${colors.iconOnHover}`
+        : `${colors.textInPrimary}`};
   }
 
   input {
     width: 100%;
     height: 100%;
-    background: #2a304d;
+    background: ${colors.primary};
     border-radius: 8px;
     border: none;
-    color: #8991be;
+    color: ${colors.textInPrimary};
 
     &::placeholder {
-      color: #8991a9;
+      color: ${colors.textInSecundary};
       font-size: calc(min(4.5vw, 18px));
     }
   }

@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
+import { colors } from '../../styles/colors';
+
 const translateY = keyframes`
   0% {
     transform: translateY(-100px);
@@ -19,9 +21,9 @@ export const Card = styled.div`
   padding: 32px 24px 16px;
   max-width: 1200px;
   width: 100%;
-  background: #2a304d;
+  background: ${colors.primary};
   border-radius: 20px;
-  box-shadow: 2px 16px 24px 6px #495071;
+  box-shadow: 2px 16px 24px 6px ${colors.primaryLight};
 
   animation: ${translateY} 1.5s;
 `;

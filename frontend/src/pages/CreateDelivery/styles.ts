@@ -114,11 +114,10 @@ export const SubmitButton = styled.button.attrs({
   width: 200px;
   height: 50px;
   letter-spacing: 0.5px;
-  transition: all 200ms;
+  transition: all 400ms;
 
   &:active {
-    color: ${colors.textInPrimary};
-    background-color: ${colors.primaryDarker};
+    border-color: ${colors.primaryDarker};
 
     > svg {
       color: ${colors.titleInPrimary} !important;

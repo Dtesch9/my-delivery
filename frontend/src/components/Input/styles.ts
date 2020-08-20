@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { colors } from '../../styles/colors';
 
@@ -17,11 +17,6 @@ export const Container = styled.div<ContainerProps>`
   border-radius: 2px;
   transition: all 500ms;
   border: 2px solid ${colors.textInPrimaryDark};
-  ${({ isFocused }) =>
-    isFocused &&
-    css`
-      box-shadow: 2px 1px 4px 1px ${colors.textInPrimary};
-    `};
 
   svg {
     margin: 0 8px 0 8px;

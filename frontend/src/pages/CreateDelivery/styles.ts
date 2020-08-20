@@ -7,8 +7,8 @@ interface MapContainerProps {
 }
 
 export const Container = styled.div`
-  padding: 32px 8px 32px;
-  height: 100vh;
+  padding: 32px 24px 32px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,7 +108,7 @@ export const SubmitButton = styled.button.attrs({
   border-radius: 6px;
   border: 1px outset #414976;
   width: 200px;
-  height: 100px;
+  height: 50px;
   transition: all 200ms;
 
   &:active {
@@ -133,11 +133,25 @@ export const MapArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   height: 100%;
+
+  @media (max-width: 1500px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 export const MapContainer = styled.div<MapContainerProps>`
   text-align: center;
+  width: 100%;
+  min-height: 300px;
+
+  & + div {
+    margin-left: 12px;
+  }
 
   h2 {
     margin-bottom: 12px;
@@ -155,5 +169,16 @@ export const MapContainer = styled.div<MapContainerProps>`
   .leaflet-container {
     border-radius: 8px;
     box-shadow: 0 -1px 2px 2px #a4cfdf;
+    width: 100%;
+    height: 400px;
+  }
+
+  @media (max-width: 1500px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 !important;
   }
 `;

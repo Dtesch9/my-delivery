@@ -45,13 +45,7 @@ const MapLeaflet: React.FC<MapLeafletProps> = props => {
   }, []);
 
   return (
-    <Map
-      style={{ height: '25vh', width: '32vw', margin: '0 8px 0' }}
-      center={initialPosition}
-      zoom={14}
-      onClick={handleMapClick}
-      {...rest}
-    >
+    <Map center={initialPosition} zoom={14} onClick={handleMapClick} {...rest}>
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

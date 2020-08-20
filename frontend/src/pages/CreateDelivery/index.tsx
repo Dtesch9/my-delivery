@@ -209,7 +209,6 @@ const CreateDelivery: React.FC = () => {
           </Form>
 
           <Form
-            initialData={{ destination: destinationAddress }}
             onSubmit={handleSearchDestinationGeocode}
             className="destination-form"
           >

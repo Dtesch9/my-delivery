@@ -19,8 +19,9 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 32px 24px 16px;
-  max-width: 1200px;
+  max-width: 1440px;
   width: 100%;
+  min-height: 930px;
   background: ${colors.primary};
   border-radius: 20px;
   box-shadow: 2px 16px 24px 6px ${colors.primaryLight};

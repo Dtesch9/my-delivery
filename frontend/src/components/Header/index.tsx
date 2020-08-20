@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { colors } from '../../styles/colors';
+
 import { Container } from './styles';
 
 const Header: React.FC = () => {
@@ -9,14 +11,14 @@ const Header: React.FC = () => {
       <NavLink
         exact
         to="/"
-        activeStyle={{ color: '#33ffd6' }}
+        activeStyle={{ color: `${colors.titleInHighlight}` }}
         className="header-cadastro"
       >
         Cadastro
       </NavLink>
       <NavLink
         to="/deliveries"
-        activeStyle={{ color: '#33ffd6' }}
+        activeStyle={{ color: `${colors.titleInHighlight}` }}
         className="header-entregas"
       >
         Entregas

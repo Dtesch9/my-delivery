@@ -12,7 +12,7 @@ export const Container = styled.div`
   background: ${colors.primaryDark};
   border-radius: 8px;
   margin-bottom: 12px;
-  border: 2px inset ${colors.titleInHighlight};
+  border: 1px solid ${colors.titleInHighlight};
 
   @media (max-width: 1125px) {
     width: 100%;

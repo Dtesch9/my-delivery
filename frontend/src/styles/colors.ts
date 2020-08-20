@@ -8,6 +8,6 @@ export const colors = {
   textInPrimaryDark: '#414976',
   textInSecundary: '#8991a9',
   titleInPrimary: '#c3deea',
-  titleInHighlight: '#33ffd6',
+  titleInHighlight: '#ffffff',
   iconOnHover: '#0AFF0A',
 };
